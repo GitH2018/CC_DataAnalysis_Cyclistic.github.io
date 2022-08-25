@@ -15,7 +15,7 @@ The analysis shows the 6 main stages of the full Data Analysis life-cycle
 
 You'll find the files used for my data analysis process in the following area
 
-## My case study files are stored in GitHub: https://github.com/GitH2018/CC_DataAnalysis
+## My case study files are stored in GitHub: https://github.com/GitH2018/CC_DataAnalysis_Cyclistic.github.io
 
 Case Study Brief:             Data Analytics - Course 8 - Case Study 1.pdf  
 Powerpoint Presentation:      Data Analysis - Bike Trips_Readonly.ppsx  
