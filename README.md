@@ -23,7 +23,7 @@ HTML Website for R markdown:  Course_8_Bike_Study_FULL.html
 R markdown file (RMD):        Course_8_Bike_Study.rmd  
 Read Me (this file):          README.md   
 
-## To download Powerpoint Slideshow Data Analysis Presentation click <b><a href=" https://github.com/GitH2018/CC_DataAnalysis_Cyclistic.github.io/raw/main/Data%20Analysis%20-%20Bike%20Trips_Readonly.ppsx">HERE</b></a><br>
+## To download Powerpoint Slideshow Data Analysis Presentation click <a href=" https://github.com/GitH2018/CC_DataAnalysis_Cyclistic.github.io/raw/main/Data%20Analysis%20-%20Bike%20Trips_Readonly.ppsx">HERE</a>
 
 Several of the Excel/CSV files used in analysis may be available on request
 
