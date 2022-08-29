@@ -15,7 +15,7 @@ The analysis shows the 6 main stages of the full Data Analysis life-cycle
 
 You'll find the files used for my data analysis process in the following area
 
-## My case study files are stored in GitHub: https://github.com/GitH2018/CC_DataAnalysis_Cyclistic.github.io
+## My case study files are stored in my [GitHub](https://github.com/GitH2018/CC_DataAnalysis_Cyclistic.github.io)
 
 Case Study Brief:             Data Analytics - Course 8 - Case Study 1.pdf  
 Powerpoint Presentation:      Data Analysis - Bike Trips_Readonly.ppsx  
@@ -23,7 +23,7 @@ HTML Website for R markdown:  Course_8_Bike_Study_FULL.html
 R markdown file (RMD):        Course_8_Bike_Study.rmd  
 Read Me (this file):          README.md   
 
-## To download Powerpoint Slideshow Data Analysis Presentation click <a href=" https://github.com/GitH2018/CC_DataAnalysis_Cyclistic.github.io/raw/main/Data%20Analysis%20-%20Bike%20Trips_Readonly.ppsx">HERE</a>
+## To download Powerpoint Slideshow Data Analysis Presentation click [Here](https://github.com/GitH2018/CC_DataAnalysis_Cyclistic.github.io/raw/main/Data%20Analysis%20-%20Bike%20Trips_Readonly.ppsx)
 
 Several of the Excel/CSV files used in analysis may be available on request
 
