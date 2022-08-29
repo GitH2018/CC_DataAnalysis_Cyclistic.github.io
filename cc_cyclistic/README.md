@@ -1,5 +1,5 @@
 ---
-layout: _layouts\default
+layout: default
 title: Colin Coyne - Data Analysis Portfolio
 ---
 # CC_DataAnalysis_Cyclistic.github.io
