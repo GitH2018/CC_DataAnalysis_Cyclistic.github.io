@@ -34,7 +34,31 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
   
 # Analyse dataset
-  
+
+## Please note: 
+#  MY PC DATA path: "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/"
+
+#  KAGGLE INPUT directory is   ../input/tripdata/all_tripdata.csv
+#  KAGGLE OUTPUT directory is  /kaggle/working
+
+```{r Set_Working_Directories, message = FALSE, warning = FALSE}
+#Input_Dir <- "../input/tripdata"   # for KAGGLE
+#Output_Dir <- "/kaggle/working"    # for KAGGLE
+
+Input_Dir <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data # Analytics Capstone Complete a Case Study/Bike Data"
+Output_Dir <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - # Data Analytics Capstone Complete a Case Study/Bike Data"
+
+# Set the path to the working directory
+# setwd(Input_Dir) # set working directory
+getwd()          # show working directory
+Input_Dir        # show INPUT directory
+Output_Dir       # show OUTPUT directory
+
+#myfile <- paste(Input_Dir,"small-divvy-tripdata.csv", sep = "/")
+#myfile
+
+```
+
 ## Install and load necessary packages and libraries
 
 ```{r Load_Packages_and_Libraries, message = FALSE, warning = FALSE}
@@ -69,11 +93,6 @@ library(readr)
 I ensured that the data sets have the same number of columns and same column names before going forward to merge them, I also checked for inconsistencies
 
 ```{r Load_CSV}
-# getwd() # get the full path to the current working directory
-# "C:/Users/User/OneDrive/Documents"
-# setwd("C:/Users/User/OneDrive/Documents/") # set working directory
-# getwd() 
-
 # If loading 12 individual monthly data sets into frames and then merging into 
 # a large data frame, use the command ... 
 
@@ -84,22 +103,22 @@ I ensured that the data sets have the same number of columns and same column nam
 # library(readr)
 
 # Small dataset to test cleansing
-#tripdata_df <- read_csv("C:/Users/User/OneDrive/00_Data Analytics and 
-#Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike 
-#Data/small-divvy-tripdata.csv")
+# myfile <- paste(Input_Dir,"small-divvy-tripdata.csv", sep = "/")
 
 # small data set for testing
-# tripdata_df <- read_csv("C:/Users/User/OneDrive/00_Data Analytics and 
-# Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike 
-# Data/202201-divvy-tripdata.csv")
+# myfile <- paste(Input_Dir,"202201-divvy-tripdata.csv", sep = "/")
 
 # small data set for testing
-# tripdata_df <- read_csv("C:/Users/User/OneDrive/00_Data Analytics and 
-# Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike 
-# Data/202112-divvy-tripdata.csv")
+# myfile <- paste(Input_Dir,"202112-divvy-tripdata.csv", sep = "/")
 
 # Load FULL dataset (all months)
-tripdata_df <- read_csv("C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/all_tripdata.csv")
+myfile <- paste(Input_Dir,"all_tripdata.csv", sep = "/")
+
+# load required dataset 
+tripdata_df <- read_csv(myfile)
+
+head(tripdata_df)
+View(tripdata_df)
 
 Ride_Count = length(unique(tripdata_df$ride_id))
 View(Ride_Count)   # Count of unique ride_id's
@@ -112,6 +131,7 @@ head(tripdata_df)      # view top of dataset
 colnames(tripdata_df)  # view column names of dataset
 str(tripdata_df)       # see structure and record count of dataset
 ```
+
 # To test validity of data loaded ... the following code chunks were used 
 
 head(tripdata_df)     #   see the first 6 rows of the data frame
@@ -169,10 +189,9 @@ Uncleansed_Summary
 View(Uncleansed_Summary)
 head(Uncleansed_Summary)
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Uncleansed_Summary.csv"
-
+output_file <- paste(Output_Dir,"Uncleansed_Summary.csv", sep = "/")
+# output_file
 write.csv(Uncleansed_Summary, file= output_file,row.names = TRUE)
-
 
 Uncleansed_Summary_df <- tripdata_df %>%
     filter(
@@ -187,9 +206,9 @@ head(Uncleansed_Summary_df)
 Ride_Count = length(unique(Uncleansed_Summary_df$ride_id))
 View(Ride_Count)
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Uncleansed_Summary_Data.csv"
+output_file <- paste(Output_Dir,"Uncleansed_Summary_Data.csv", sep = "/")
+# output_file
 write.csv(Uncleansed_Summary_df, file= output_file,row.names = TRUE)
-
 
 grand_summary_df <- tripdata_df %>% 
   group_by(Month_Year = format(as.POSIXct(started_at, "%Y_%m"), "%Y_%m")) %>%
@@ -218,8 +237,8 @@ str(grand_summary_df)       # see structure and record count of dataset
 Ride_Count = count(grand_summary_df)
 View(Ride_Count)
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Trip_Summary_Pre_cleanse.csv"
-
+output_file <- paste(Output_Dir,"Uncleansed_Summary_Data.csv", sep = "/")
+# output_file
 write.csv(grand_summary_df, file= output_file,row.names = TRUE)
 ```
 
@@ -263,8 +282,8 @@ head(summary_df)      # view top of dataset
 colnames(summary_df)  # view column names of dataset
 str(summary_df)       # see structure and record count of dataset
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Trip_Summary_Cleansed.csv"
-
+output_file <- paste(Output_Dir,"Trip_Summary_Cleansed.csv", sep = "/")
+# output_file
 write.csv(summary_df, file= output_file,row.names = TRUE)
 
 summary_casual_df <- tripdata_df %>% 
@@ -298,8 +317,8 @@ head(summary_casual_df)     # view top of dataset
 colnames(summary_casual_df) # view column names of dataset
 str(summary_casual_df)      # see structure and record count of dataset
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Trip_Summary_Casual_Cleansed.csv"
-
+output_file <- paste(Output_Dir,"Trip_Summary_Casual_Cleansed.csv", sep = "/")
+# output_file
 write.csv(summary_casual_df, file= output_file,row.names = TRUE)
 
 summary_member_df <- tripdata_df %>% 
@@ -332,8 +351,8 @@ head(summary_member_df)     # view top of dataset
 colnames(summary_member_df) # view column names of dataset
 str(summary_member_df)      # see structure and record count of dataset
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Trip_Summary_Member_Cleansed.csv"
-
+output_file <- paste(Output_Dir,"Trip_Summary_Member_Cleansed.csv", sep = "/")
+# output_file
 write.csv(summary_member_df, file= output_file,row.names = TRUE)
 ```
 
@@ -467,8 +486,8 @@ nrow(Casual_Over30_df)
 #View(Casual_Over30_df)
 head(Casual_Over30_df)
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Casual_Over30.csv"
-
+output_file <- paste(Output_Dir,"Casual_Over30.csv", sep = "/")
+# output_file
 write.csv(Casual_Over30_df, file= output_file,row.names = TRUE)
 ```
 
@@ -510,8 +529,8 @@ head(averages_df)
 #View(averages_df_count)
 #head(averages_df_count)
   
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/averages_df.csv"
-
+output_file <- paste(Output_Dir,"averages_df.csv", sep = "/")
+# output_file
 write.csv(averages_df, file= output_file,row.names = TRUE)
 
 averages_yyyymm_df <- subset_df %>%
@@ -528,8 +547,8 @@ head(averages_yyyymm_df)
 #View(averages_yyyymm_df_count)
 #head(averages_yyyymm_df_count)
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/averages_yyyymm_df.csv"
-
+output_file <- paste(Output_Dir,"averages_yyyymm_df.csv", sep = "/")
+# output_file
 write.csv(averages_yyyymm_df, file= output_file,row.names = TRUE)
 
 ```
@@ -554,8 +573,8 @@ head(big_duration_df)  # show records >= 1000 minutes duration
 
 big_duration_df
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Top_Outliers_tripdata.csv"
-
+output_file <- paste(Output_Dir,"Top_Outliers_tripdata.csv", sep = "/")
+# output_file
 write.csv(big_duration_df, file= output_file,row.names = TRUE)
 ```
 
@@ -612,8 +631,7 @@ subset_df %>%
        y = "Count") 
 
 # Save chart to working directory 
-setwd("C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data")
-# getwd() # show current working (source) directory
+setwd(Output_Dir)
 ggsave("Ride types and frequencies.jpg")
 
 ```
@@ -640,8 +658,7 @@ subset_df %>%
        y = "Count")
 
 # Save chart to working directory 
-setwd("C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data")
-# getwd() # show current working (source) directory
+setwd(Output_Dir)
 ggsave("Ride types and frequencies by Year Month.jpg")
 
 ```
@@ -666,8 +683,7 @@ subset_df %>%
        y = "Count")
 
 # Save chart to working directory 
-setwd("C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data")
-# getwd() # show current working (source) directory
+setwd(Output_Dir)
 ggsave("Ride types and frequencies by hour.jpg")
 ```
 
@@ -691,8 +707,7 @@ subset_df %>%
        y = "Count") 
 
 # Save chart to working directory 
-setwd("C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data")
-# getwd() # show current working (source) directory
+setwd(Output_Dir)
 ggsave("Trips by Ride Type per Day.jpg")
 
 ```
@@ -717,8 +732,7 @@ subset_df %>%
        y = "Count") 
 
 # Save chart to working directory 
-setwd("C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data")
-# getwd() # show current working (source) directory
+setwd(Output_Dir)
 ggsave("Trips by Member Type per Day.jpg")
 
 ```
@@ -747,8 +761,8 @@ chart_data <- data.frame(MmmYYYY = grand_summary_df$Month_Year,
 head(chart_data)                         
 nrow(chart_data)
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/chartdata_tripdata.csv"
-
+output_file <- paste(Output_Dir,"chartdata_tripdata.csv", sep = "/")
+# output_file
 write.csv(chart_data, file= output_file,row.names = TRUE)
 
 chart_data %>%
@@ -763,8 +777,7 @@ chart_data %>%
        subtitle="Data Range: Jun-2021 to May-2022, data provided by Motivate International Inc.") 
 
 # Save chart to working directory 
-setwd("C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data")
-# getwd() # show current working (source) directory
+setwd(Output_Dir)
 ggsave("Rides by Member Type per Month.jpg")
 ```
 
@@ -787,8 +800,7 @@ ggplot(data=chart_data, aes(x=MmmYYYY)) +
        subtitle="Data Range: Jun-2021 to May-2022, data provided by Motivate International Inc.") 
 
 # Save chart to working directory 
-setwd("C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data")
-# getwd() # show current working (source) directory
+setwd(Output_Dir)
 ggsave("Trips by Ride Type per Month.jpg")
 ```
 
@@ -809,8 +821,8 @@ top10_starts
 View(top10_starts)
 head(top10_starts)
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Top10_Start_tripdata.csv"
-
+output_file <- paste(Output_Dir,"Top10_Start_tripdata.csv", sep = "/")
+# output_file
 write.csv(top10_starts, file= output_file,row.names = TRUE)
 ```
 
@@ -828,8 +840,8 @@ top10_ends
 View(top10_ends)
 head(top10_ends)
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Top10_End_tripdata.csv"
-
+output_file <- paste(Output_Dir,"Top10_End_tripdata.csv", sep = "/")
+# output_file
 write.csv(top10_ends, file= output_file,row.names = TRUE)
 ```
 
@@ -854,8 +866,8 @@ Top10_Journeys
 View(Top10_Journeys)
 head(Top10_Journeys)
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Top10_Journeys_tripdata.csv"
-
+output_file <- paste(Output_Dir,"Top10_Journeys_tripdata.csv", sep = "/")
+# output_file
 write.csv(Top10_Journeys, file= output_file,row.names = TRUE)
 ```
 
@@ -878,11 +890,14 @@ Top10_Durations
 View(Top10_Durations)
 head(Top10_Durations)
 
-output_file <- "C:/Users/User/OneDrive/00_Data Analytics and Analysis/Course 8 - Data Analytics Capstone Complete a Case Study/Bike Data/Top10_Durations_tripdata.csv"
-
+output_file <- paste(Output_Dir,"Top10_Durations_tripdata.csv", sep = "/")
+# output_file
 write.csv(Top10_Durations, file= output_file,row.names = TRUE)
 ```
 
 # Thank you for your attention, any feedback will be gratefully received
 
-Colin Coyne - Coyne Operations Ltd
+# Colin Coyne
+# Coyne Operations Ltd
+# coyneops@gmail.com
+
